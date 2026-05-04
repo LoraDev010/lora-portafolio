@@ -1,0 +1,36 @@
+.icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 12px;
+  transition: background 0.15s, transform 0.15s;
+  color: inherit;
+}
+
+.icon:hover {
+  background: rgba(0, 240, 255, 0.06);
+  transform: translateY(-2px);
+}
+
+.icon:active {
+  transform: scale(0.95);
+}
+
+.icon__glyph {
+  font-size: 2.4rem;
+  filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.5));
+}
+
+.icon__label {
+  font-size: 0.72rem;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  color: rgba(200, 230, 255, 0.85);
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}

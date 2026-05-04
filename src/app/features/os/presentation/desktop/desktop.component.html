@@ -1,0 +1,21 @@
+<div class="desktop">
+  <div class="desktop__grid">
+    @for (item of items; track item.app.id) {
+      <app-desktop-icon [item]="item" (opened)="openApp($event)" />
+    }
+  </div>
+
+  @for (win of windows(); track win.id) {
+    @if (!win.isMinimized) {
+      <app-window [win]="win">
+        @if (isAi(win.appId)) {
+          <app-ai-assistant />
+        } @else {
+          <p class="desktop__placeholder">{{ contentMap[win.appId] }}</p>
+        }
+      </app-window>
+    }
+  }
+
+  <app-taskbar />
+</div>

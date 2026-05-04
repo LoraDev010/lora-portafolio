@@ -1,0 +1,106 @@
+.ai {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 0;
+}
+
+.ai__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+  margin-bottom: 14px;
+}
+
+.ai__indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00f0ff;
+  box-shadow: 0 0 10px #00f0ff;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.ai__name {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(0, 240, 255, 0.9);
+}
+
+.ai__status {
+  margin-left: auto;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: rgba(0, 240, 255, 0.5);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.ai__feed {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+}
+
+.ai__msg {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: rgba(200, 230, 255, 0.75);
+  margin: 0;
+}
+
+.ai__msg--system {
+  font-size: 0.68rem;
+  color: rgba(0, 240, 255, 0.4);
+  letter-spacing: 0.06em;
+}
+
+.ai__input-row {
+  display: flex;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(0, 240, 255, 0.1);
+  margin-top: 14px;
+}
+
+.ai__input {
+  flex: 1;
+  background: rgba(0, 240, 255, 0.04);
+  border: 1px solid rgba(0, 240, 255, 0.15);
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: rgba(200, 230, 255, 0.8);
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.78rem;
+  outline: none;
+}
+
+.ai__input:focus {
+  border-color: rgba(0, 240, 255, 0.4);
+  box-shadow: 0 0 0 2px rgba(0, 240, 255, 0.08);
+}
+
+.ai__send {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  color: rgba(0, 240, 255, 0.8);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.15s;
+}
+
+.ai__send:hover { background: rgba(0, 240, 255, 0.2); }

@@ -1,0 +1,99 @@
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 20px;
+  backdrop-filter: blur(24px) saturate(1.6);
+  background: rgba(6, 12, 22, 0.88);
+  border-top: 1px solid rgba(0, 240, 255, 0.12);
+  box-shadow: 0 -4px 32px rgba(0, 0, 0, 0.5), 0 -1px 0 rgba(0, 240, 255, 0.06);
+  z-index: 9000;
+}
+
+.taskbar__brand {
+  display: flex;
+  align-items: center;
+  padding-right: 16px;
+  border-right: 1px solid rgba(0, 240, 255, 0.12);
+}
+
+.taskbar__logo {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(0, 240, 255, 0.9);
+  text-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
+}
+
+.taskbar__windows {
+  display: flex;
+  gap: 6px;
+  flex: 1;
+  overflow: hidden;
+}
+
+.taskbar__btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border: 1px solid rgba(0, 240, 255, 0.1);
+  border-radius: 6px;
+  background: rgba(0, 240, 255, 0.04);
+  color: rgba(180, 220, 255, 0.6);
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.taskbar__btn:hover {
+  background: rgba(0, 240, 255, 0.1);
+  color: rgba(200, 235, 255, 0.9);
+  border-color: rgba(0, 240, 255, 0.25);
+}
+
+.taskbar__btn.active {
+  background: rgba(0, 240, 255, 0.12);
+  border-color: rgba(0, 240, 255, 0.35);
+  color: rgba(0, 240, 255, 0.95);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
+}
+
+.taskbar__btn.minimized { opacity: 0.5; }
+
+.taskbar__btn-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(0, 240, 255, 0.5);
+  flex-shrink: 0;
+}
+
+.taskbar__btn.active .taskbar__btn-dot {
+  background: rgba(0, 240, 255, 1);
+  box-shadow: 0 0 6px rgba(0, 240, 255, 0.8);
+}
+
+.taskbar__sys {
+  padding-left: 16px;
+  border-left: 1px solid rgba(0, 240, 255, 0.12);
+}
+
+.taskbar__time {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.75rem;
+  color: rgba(180, 220, 255, 0.7);
+  letter-spacing: 0.06em;
+}

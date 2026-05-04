@@ -1,0 +1,37 @@
+.desktop {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 10%, rgba(0, 60, 100, 0.35) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 80% 80%, rgba(0, 30, 80, 0.25) 0%, transparent 60%),
+    linear-gradient(160deg, #030b18 0%, #050e1e 40%, #030a16 100%);
+}
+
+.desktop::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 240, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+.desktop__grid {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.desktop__placeholder {
+  color: rgba(180, 220, 255, 0.6);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  margin: 0;
+}

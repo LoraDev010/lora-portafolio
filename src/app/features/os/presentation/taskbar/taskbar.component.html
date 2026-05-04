@@ -1,0 +1,23 @@
+<nav class="taskbar">
+  <div class="taskbar__brand">
+    <span class="taskbar__logo">◈ LORA.OS</span>
+  </div>
+
+  <div class="taskbar__windows">
+    @for (win of windows(); track win.id) {
+      <button
+        class="taskbar__btn"
+        [class.active]="win.isFocused && !win.isMinimized"
+        [class.minimized]="win.isMinimized"
+        (click)="win.isFocused && !win.isMinimized ? toggleMinimize(win.id) : focus(win.id)"
+      >
+        <span class="taskbar__btn-dot"></span>
+        {{ win.title }}
+      </button>
+    }
+  </div>
+
+  <div class="taskbar__sys">
+    <span class="taskbar__time">{{ time() }}</span>
+  </div>
+</nav>
