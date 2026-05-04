@@ -1,0 +1,38 @@
+<div class="exp">
+
+  <div class="exp__header">
+    <span class="exp__total">INVAMER S.A.S. · 2020 — 2026</span>
+    <span class="exp__badge">6+ yrs</span>
+  </div>
+
+  <div class="exp__timeline">
+    @for (job of experience; track job.id; let i = $index) {
+      <div class="exp__entry" [class.exp__entry--first]="i === 0">
+        <div class="exp__dot" [class.exp__dot--lead]="i === 0"></div>
+
+        <div class="exp__card">
+          <div class="exp__card-header">
+            <div class="exp__role-wrap">
+              <span class="exp__role">{{ job.role }}</span>
+              <span class="exp__company">{{ job.company }}</span>
+            </div>
+            <div class="exp__meta">
+              <span class="exp__period">{{ job.period }}</span>
+              <span class="exp__type">{{ job.type }}</span>
+            </div>
+          </div>
+
+          <ul class="exp__list">
+            @for (h of job.highlights; track h) {
+              <li class="exp__item">
+                <span class="exp__bullet">▹</span>
+                <span>{{ h }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+    }
+  </div>
+
+</div>

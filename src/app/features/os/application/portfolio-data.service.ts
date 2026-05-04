@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ISkill, SkillCategory } from '../domain/models/skill.model';
 import { IProject } from '../domain/models/project.model';
+import { IExperience } from '../domain/models/experience.model';
 
 @Injectable({ providedIn: 'root' })
 export class PortfolioDataService {
@@ -41,6 +42,51 @@ export class PortfolioDataService {
     },
     new Map<SkillCategory, ISkill[]>()
   );
+
+  readonly experience: IExperience[] = [
+    {
+      id: 'techlead',
+      role: 'Tech Lead · Sr Full Stack Developer',
+      company: 'INVAMER S.A.S.',
+      period: 'Jan 2023 — Feb 2026',
+      type: 'Full-time',
+      highlights: [
+        'Lideré arquitectura de sistemas empresariales (Clean/Hexagonal, Microservices)',
+        'Plataforma de empleados end-to-end: contratos, onboarding, firma digital',
+        'Módulo de validación de viáticos con IA — reducción de tiempo operativo significativa',
+        'Sistema de sincronización en campo con RabbitMQ + WebSockets (latencia sub-100ms)',
+        'Dirigí equipo técnico, code reviews y decisiones de stack',
+        'CI/CD con Docker + AWS · SonarQube · OWASP',
+      ],
+    },
+    {
+      id: 'fullstack',
+      role: 'Full Stack Developer · Analista Funcional',
+      company: 'INVAMER S.A.S.',
+      period: 'Jan 2021 — Dec 2022',
+      type: 'Full-time',
+      highlights: [
+        'Desarrollo full stack Angular + Laravel + Node.js + SQL Server',
+        'Análisis funcional y levantamiento de requerimientos con stakeholders',
+        'Sistema de beneficios corporativos con Power BI integrado',
+        'Gestión y trazabilidad de activos con Power Apps / Power Automate',
+        'Automatización de procesos internos con Python scraping + SharePoint',
+      ],
+    },
+    {
+      id: 'analistati',
+      role: 'Analista TI · Full Stack Developer',
+      company: 'INVAMER S.A.S.',
+      period: 'Jan 2020 — Dec 2020',
+      type: 'Full-time',
+      highlights: [
+        'Análisis de sistemas TI y soporte a infraestructura interna',
+        'Desarrollo de herramientas internas y dashboards operativos',
+        'Administración de bases de datos SQL Server',
+        'Inicio en desarrollo full stack con PHP y JavaScript',
+      ],
+    },
+  ];
 
   readonly projects: IProject[] = [
     {

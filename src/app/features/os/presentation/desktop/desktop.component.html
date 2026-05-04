@@ -1,19 +1,22 @@
 <div class="desktop">
-  <div class="desktop__grid">
-    @for (item of items; track item.app.id) {
-      <app-desktop-icon [item]="item" (opened)="openApp($event)" />
-    }
-  </div>
+  @for (item of items(); track item.app.id) {
+    <app-desktop-icon
+      [item]="item"
+      (opened)="openApp($event)"
+      (moved)="onIconMoved($event.id, $event.position)"
+    />
+  }
 
   @for (win of windows(); track win.id) {
     @if (!win.isMinimized) {
       <app-window [win]="win">
         @switch (win.appId) {
-          @case ('about')    { <app-about-content /> }
-          @case ('skills')   { <app-skills-content /> }
-          @case ('projects') { <app-projects-content /> }
-          @case ('contact')  { <app-contact-content /> }
-          @case ('ai')       { <app-ai-assistant /> }
+          @case ('about')      { <app-about-content /> }
+          @case ('experience') { <app-experience-content /> }
+          @case ('skills')     { <app-skills-content /> }
+          @case ('projects')   { <app-projects-content /> }
+          @case ('contact')    { <app-contact-content /> }
+          @case ('ai')         { <app-ai-assistant /> }
         }
       </app-window>
     }

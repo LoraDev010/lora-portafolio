@@ -35,6 +35,7 @@ export class WindowComponent implements OnInit {
       left: `${p.x}px`,
       top: `${p.y}px`,
       width: `${this.win().size.width}px`,
+      height: `${this.win().size.height}px`,
       'z-index': this.win().zIndex,
     };
   }
