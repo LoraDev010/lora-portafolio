@@ -8,10 +8,12 @@
   @for (win of windows(); track win.id) {
     @if (!win.isMinimized) {
       <app-window [win]="win">
-        @if (isAi(win.appId)) {
-          <app-ai-assistant />
-        } @else {
-          <p class="desktop__placeholder">{{ contentMap[win.appId] }}</p>
+        @switch (win.appId) {
+          @case ('about')    { <app-about-content /> }
+          @case ('skills')   { <app-skills-content /> }
+          @case ('projects') { <app-projects-content /> }
+          @case ('contact')  { <app-contact-content /> }
+          @case ('ai')       { <app-ai-assistant /> }
         }
       </app-window>
     }

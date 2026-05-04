@@ -7,24 +7,33 @@ import { DesktopIconComponent } from '../desktop-icon/desktop-icon.component';
 import { WindowComponent } from '../window/window.component';
 import { TaskbarComponent } from '../taskbar/taskbar.component';
 import { AiAssistantComponent } from '../ai-assistant/ai-assistant.component';
+import { AboutContentComponent } from '../about-content/about-content.component';
+import { SkillsContentComponent } from '../skills-content/skills-content.component';
+import { ProjectsContentComponent } from '../projects-content/projects-content.component';
+import { ContactContentComponent } from '../contact-content/contact-content.component';
 
 const DESKTOP_APPS: IApp[] = [
-  { id: 'projects', label: 'Projects', icon: '⬡' },
-  { id: 'about',    label: 'About Me', icon: '◉' },
-  { id: 'contact',  label: 'Contact',  icon: '◈' },
-  { id: 'ai',       label: 'AI Chat',  icon: '⬟' },
+  { id: 'about',    label: 'About Me',  icon: '◉' },
+  { id: 'skills',   label: 'Skills',    icon: '⬡' },
+  { id: 'projects', label: 'Projects',  icon: '⬟' },
+  { id: 'contact',  label: 'Contact',   icon: '◈' },
+  { id: 'ai',       label: 'AI Chat',   icon: '△' },
 ];
-
-const WINDOW_CONTENT: Record<string, string> = {
-  projects: 'Projects will appear here. Coming soon.',
-  about:    'Hi, I\'m Lora — a frontend developer building elegant, scalable interfaces.',
-  contact:  'andres.lora@invamer.com.co',
-};
 
 @Component({
   selector: 'app-desktop',
   standalone: true,
-  imports: [CommonModule, DesktopIconComponent, WindowComponent, TaskbarComponent, AiAssistantComponent],
+  imports: [
+    CommonModule,
+    DesktopIconComponent,
+    WindowComponent,
+    TaskbarComponent,
+    AiAssistantComponent,
+    AboutContentComponent,
+    SkillsContentComponent,
+    ProjectsContentComponent,
+    ContactContentComponent,
+  ],
   templateUrl: './desktop.component.html',
   styleUrl: './desktop.component.css',
 })
@@ -33,16 +42,12 @@ export class DesktopComponent {
 
   protected readonly windows = this.wm.windows;
 
-  protected readonly items: IDesktopItem[] = DESKTOP_APPS.map((app, i) => ({
+  protected readonly items: IDesktopItem[] = DESKTOP_APPS.map(app => ({
     app,
     position: { x: 0, y: 0 },
   }));
 
-  protected readonly contentMap = WINDOW_CONTENT;
-
   openApp(app: IApp) {
     this.wm.open(app.id, app.label);
   }
-
-  isAi(appId: string) { return appId === 'ai'; }
 }

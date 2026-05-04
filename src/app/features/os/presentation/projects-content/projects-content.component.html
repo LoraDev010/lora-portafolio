@@ -1,0 +1,26 @@
+<div class="projects">
+  @for (project of projects; track project.id) {
+    <div class="project-card">
+      <div class="project-card__header">
+        <div class="project-card__title-row">
+          <span class="project-card__dot"></span>
+          <h3 class="project-card__name">{{ project.name }}</h3>
+          <span class="project-card__period">{{ project.period }}</span>
+        </div>
+        <p class="project-card__desc">{{ project.description }}</p>
+      </div>
+
+      <div class="project-card__tech">
+        @for (tag of project.tech; track tag) {
+          <span class="tech-tag">{{ tag }}</span>
+        }
+      </div>
+
+      <ul class="project-card__highlights">
+        @for (h of project.highlights; track h) {
+          <li>{{ h }}</li>
+        }
+      </ul>
+    </div>
+  }
+</div>

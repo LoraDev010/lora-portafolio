@@ -1,0 +1,136 @@
+.about {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.about__header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.about__avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(0,240,255,0.2), rgba(0,100,200,0.3));
+  border: 2px solid rgba(0,240,255,0.4);
+  box-shadow: 0 0 20px rgba(0,240,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: rgba(0,240,255,0.9);
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.about__name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgba(220,240,255,0.95);
+  letter-spacing: 0.02em;
+  margin: 0 0 4px;
+}
+
+.about__title {
+  font-size: 0.72rem;
+  color: rgba(0,240,255,0.8);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 4px;
+}
+
+.about__location {
+  font-size: 0.7rem;
+  color: rgba(180,210,255,0.5);
+  margin: 0;
+}
+
+.about__divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,240,255,0.2), transparent);
+}
+
+.about__bio {
+  font-size: 0.8rem;
+  line-height: 1.75;
+  color: rgba(190,220,255,0.7);
+  margin: 0;
+}
+
+.about__highlight {
+  color: rgba(0,240,255,0.9);
+  font-weight: 600;
+}
+
+.about__stats {
+  display: flex;
+  gap: 0;
+}
+
+.about__stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 0;
+  border-right: 1px solid rgba(0,240,255,0.08);
+}
+
+.about__stat:last-child { border-right: none; }
+
+.about__stat-num {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: rgba(0,240,255,0.9);
+  text-shadow: 0 0 16px rgba(0,240,255,0.5);
+  line-height: 1;
+}
+
+.about__stat-label {
+  font-size: 0.62rem;
+  color: rgba(180,210,255,0.5);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.about__linkedin {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid rgba(0,100,200,0.3);
+  border-radius: 8px;
+  background: rgba(0,100,200,0.06);
+  color: rgba(100,180,255,0.85);
+  text-decoration: none;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  transition: all 0.2s;
+}
+
+.about__linkedin:hover {
+  background: rgba(0,100,200,0.14);
+  border-color: rgba(0,150,255,0.5);
+  color: rgba(150,210,255,1);
+  box-shadow: 0 0 16px rgba(0,100,255,0.15);
+}
+
+.about__linkedin-icon {
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: rgba(0,100,200,0.5);
+  border-radius: 3px;
+  padding: 2px 5px;
+  color: #fff;
+}
+
+.about__linkedin-arrow {
+  margin-left: auto;
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
