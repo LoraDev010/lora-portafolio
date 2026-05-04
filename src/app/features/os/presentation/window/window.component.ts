@@ -44,23 +44,46 @@ export class WindowComponent implements OnInit {
   onClose() { this.wm.close(this.win().id); }
   onMinimize() { this.wm.toggleMinimize(this.win().id); }
 
-  onDragStart(e: MouseEvent) {
+  private startDrag(clientX: number, clientY: number) {
     this.dragging = true;
-    this.dragOffset = { x: e.clientX - this.pos().x, y: e.clientY - this.pos().y };
+    this.dragOffset = { x: clientX - this.pos().x, y: clientY - this.pos().y };
     this.wm.focus(this.win().id);
   }
 
-  @HostListener('document:mousemove', ['$event'])
-  onMouseMove(e: MouseEvent) {
+  private moveDrag(clientX: number, clientY: number) {
     if (!this.dragging) return;
-    this.pos.set({ x: e.clientX - this.dragOffset.x, y: e.clientY - this.dragOffset.y });
+    this.pos.set({ x: clientX - this.dragOffset.x, y: clientY - this.dragOffset.y });
   }
 
-  @HostListener('document:mouseup')
-  onMouseUp() {
+  private endDrag() {
     if (this.dragging) {
       this.dragging = false;
       this.wm.move(this.win().id, this.pos());
     }
   }
+
+  onDragStart(e: MouseEvent) {
+    this.startDrag(e.clientX, e.clientY);
+  }
+
+  onTouchDragStart(e: TouchEvent) {
+    const t = e.touches[0];
+    this.startDrag(t.clientX, t.clientY);
+  }
+
+  @HostListener('document:mousemove', ['$event'])
+  onMouseMove(e: MouseEvent) { this.moveDrag(e.clientX, e.clientY); }
+
+  @HostListener('document:touchmove', ['$event'])
+  onTouchMove(e: TouchEvent) {
+    if (!this.dragging) return;
+    const t = e.touches[0];
+    this.moveDrag(t.clientX, t.clientY);
+  }
+
+  @HostListener('document:mouseup')
+  onMouseUp() { this.endDrag(); }
+
+  @HostListener('document:touchend')
+  onTouchEnd() { this.endDrag(); }
 }

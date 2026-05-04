@@ -30,6 +30,7 @@
   background: rgba(0, 240, 255, 0.04);
   border-bottom: 1px solid rgba(0, 240, 255, 0.1);
   cursor: grab;
+  touch-action: none;
 }
 
 .os-window__titlebar:active { cursor: grabbing; }
@@ -72,4 +73,22 @@
   overflow-y: auto;
   height: calc(100% - 44px);
   user-select: text;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 767px) {
+  .os-window {
+    max-width: calc(100vw - 16px) !important;
+    max-height: calc(100vh - 72px) !important;
+  }
+
+  .os-window__body {
+    padding: 16px;
+    font-size: 0.8rem;
+  }
+
+  .ctrl {
+    width: 16px;
+    height: 16px;
+  }
 }

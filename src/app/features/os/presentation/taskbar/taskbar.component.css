@@ -35,8 +35,13 @@
   display: flex;
   gap: 6px;
   flex: 1;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
+
+.taskbar__windows::-webkit-scrollbar { display: none; }
 
 .taskbar__btn {
   display: flex;
@@ -96,4 +101,27 @@
   font-size: 0.75rem;
   color: rgba(180, 220, 255, 0.7);
   letter-spacing: 0.06em;
+}
+
+@media (max-width: 767px) {
+  .taskbar {
+    padding: 0 12px;
+    gap: 8px;
+    height: 52px;
+  }
+
+  .taskbar__logo {
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+  }
+
+  .taskbar__btn {
+    padding: 6px 10px;
+    font-size: 0.65rem;
+    min-height: 36px;
+  }
+
+  .taskbar__sys {
+    display: none;
+  }
 }

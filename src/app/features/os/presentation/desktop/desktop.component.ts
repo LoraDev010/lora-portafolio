@@ -45,12 +45,17 @@ export class DesktopComponent {
 
   protected readonly windows = this.wm.windows;
 
-  protected readonly items = signal<IDesktopItem[]>(
-    DESKTOP_APPS.map((app, i) => ({
+  protected readonly items = signal<IDesktopItem[]>(this.buildItems());
+
+  private buildItems(): IDesktopItem[] {
+    const isMobile = window.innerWidth < 768;
+    return DESKTOP_APPS.map((app, i) => ({
       app,
-      position: { x: 24, y: 24 + i * 100 },
-    }))
-  );
+      position: isMobile
+        ? { x: 16 + (i % 3) * 90, y: 16 + Math.floor(i / 3) * 100 }
+        : { x: 24, y: 24 + i * 100 },
+    }));
+  }
 
   openApp(app: IApp) {
     this.wm.open(app.id, app.label);

@@ -7,7 +7,11 @@ import { IApp } from '../../domain/models/app.model';
   standalone: true,
   imports: [],
   template: `
-    <button class="icon" (mousedown)="onMouseDown($event)">
+    <button
+      class="icon"
+      (mousedown)="onPointerDown($event)"
+      (touchstart)="onTouchDown($event)"
+    >
       <span class="icon__glyph">{{ item().app.icon }}</span>
       <span class="icon__label">{{ item().app.label }}</span>
     </button>
@@ -17,6 +21,7 @@ import { IApp } from '../../domain/models/app.model';
     '[style.position]': '"absolute"',
     '[style.left.px]': 'pos().x',
     '[style.top.px]': 'pos().y',
+    '[style.touch-action]': '"none"',
   },
 })
 export class DesktopIconComponent implements OnInit {
@@ -35,26 +40,23 @@ export class DesktopIconComponent implements OnInit {
     this.pos.set(this.item().position);
   }
 
-  onMouseDown(e: MouseEvent) {
-    e.preventDefault();
+  private startDrag(clientX: number, clientY: number) {
     this.dragging = true;
     this.hasDragged = false;
-    this.startMouse = { x: e.clientX, y: e.clientY };
-    this.dragOffset = { x: e.clientX - this.pos().x, y: e.clientY - this.pos().y };
+    this.startMouse = { x: clientX, y: clientY };
+    this.dragOffset = { x: clientX - this.pos().x, y: clientY - this.pos().y };
   }
 
-  @HostListener('document:mousemove', ['$event'])
-  onMouseMove(e: MouseEvent) {
+  private applyMove(clientX: number, clientY: number) {
     if (!this.dragging) return;
-    const dx = e.clientX - this.startMouse.x;
-    const dy = e.clientY - this.startMouse.y;
-    if (!this.hasDragged && Math.sqrt(dx * dx + dy * dy) < 5) return;
+    const dx = clientX - this.startMouse.x;
+    const dy = clientY - this.startMouse.y;
+    if (!this.hasDragged && Math.sqrt(dx * dx + dy * dy) < 6) return;
     this.hasDragged = true;
-    this.pos.set({ x: e.clientX - this.dragOffset.x, y: e.clientY - this.dragOffset.y });
+    this.pos.set({ x: clientX - this.dragOffset.x, y: clientY - this.dragOffset.y });
   }
 
-  @HostListener('document:mouseup')
-  onMouseUp() {
+  private endDrag() {
     if (!this.dragging) return;
     this.dragging = false;
     if (!this.hasDragged) {
@@ -63,4 +65,29 @@ export class DesktopIconComponent implements OnInit {
       this.moved.emit({ id: this.item().app.id, position: this.pos() });
     }
   }
+
+  onPointerDown(e: MouseEvent) {
+    e.preventDefault();
+    this.startDrag(e.clientX, e.clientY);
+  }
+
+  onTouchDown(e: TouchEvent) {
+    const t = e.touches[0];
+    this.startDrag(t.clientX, t.clientY);
+  }
+
+  @HostListener('document:mousemove', ['$event'])
+  onMouseMove(e: MouseEvent) { this.applyMove(e.clientX, e.clientY); }
+
+  @HostListener('document:touchmove', ['$event'])
+  onTouchMove(e: TouchEvent) {
+    if (!this.dragging) return;
+    this.applyMove(e.touches[0].clientX, e.touches[0].clientY);
+  }
+
+  @HostListener('document:mouseup')
+  onMouseUp() { this.endDrag(); }
+
+  @HostListener('document:touchend')
+  onTouchEnd() { this.endDrag(); }
 }

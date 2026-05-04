@@ -1,5 +1,5 @@
 <div class="os-window" [class.focused]="win().isFocused" [ngStyle]="style" (mousedown)="onFocus()">
-  <div class="os-window__titlebar" (mousedown)="onDragStart($event)">
+  <div class="os-window__titlebar" (mousedown)="onDragStart($event)" (touchstart)="onTouchDragStart($event)">
     <div class="os-window__controls">
       <button class="ctrl ctrl--close" (click)="onClose()" title="Close"></button>
       <button class="ctrl ctrl--minimize" (click)="onMinimize()" title="Minimize"></button>

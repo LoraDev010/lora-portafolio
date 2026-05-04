@@ -16,14 +16,22 @@ export class WindowManagerService {
     const existing = this._windows().find(w => w.appId === appId);
     if (existing) { this.focus(existing.id); return; }
 
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const isMobile = vw < 768;
+    const w = isMobile ? vw - 16 : Math.min(560, vw - 32);
+    const h = isMobile ? vh - 72 : Math.min(460, vh - 100);
+    const x = isMobile ? 8 : Math.max(8, 80 + Math.random() * Math.max(0, vw - w - 120));
+    const y = isMobile ? 8 : Math.max(8, 60 + Math.random() * Math.max(0, vh - h - 100));
+
     const win: IWindow = {
       id,
       title,
       appId,
       isMinimized: false,
       isFocused: true,
-      position: { x: 80 + Math.random() * 120, y: 60 + Math.random() * 80 },
-      size: { width: 560, height: 400 },
+      position: { x, y },
+      size: { width: w, height: h },
       zIndex: ++this._zCounter,
     };
     this._windows.update(ws => [...ws.map(w => ({ ...w, isFocused: false })), win]);
