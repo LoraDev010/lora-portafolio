@@ -14,6 +14,8 @@ export class TaskbarComponent {
   private readonly wm = inject(WindowManagerService);
   protected readonly themeService = inject(ThemeService);
 
+  protected readonly openCount  = computed(() => this.wm.windows().filter(w => !w.isMinimized).length)
+
   protected readonly windows = this.wm.windows;
   protected readonly time = computed(() => new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }));
 

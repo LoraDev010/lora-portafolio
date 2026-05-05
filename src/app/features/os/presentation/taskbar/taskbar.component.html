@@ -1,28 +1,25 @@
 <nav class="taskbar">
   <div class="taskbar__brand">
-    <span class="taskbar__logo">◈ LORA.OS</span>
+    @if(openCount() > 0){
+    <span><span class="taskbar__logo">{{ openCount() }}</span></span>
+    }
+    <span class="taskbar__logo"> ◈ LORA.OS</span>
+
   </div>
 
   <div class="taskbar__windows">
     @for (win of windows(); track win.id) {
-      <button
-        class="taskbar__btn"
-        [class.active]="win.isFocused && !win.isMinimized"
-        [class.minimized]="win.isMinimized"
-        (click)="win.isFocused && !win.isMinimized ? toggleMinimize(win.id) : focus(win.id)"
-      >
-        <span class="taskbar__btn-dot"></span>
-        {{ win.title }}
-      </button>
+    <button class="taskbar__btn" [class.active]="win.isFocused && !win.isMinimized" [class.minimized]="win.isMinimized"
+      (click)="win.isFocused && !win.isMinimized ? toggleMinimize(win.id) : focus(win.id)">
+      <span class="taskbar__btn-dot"></span>
+      {{ win.title }}
+    </button>
     }
   </div>
 
   <div class="taskbar__sys">
-    <button
-      class="taskbar__theme-btn"
-      (click)="themeService.toggle()"
-      [title]="themeService.theme() === 'dark' ? 'Switch to light' : 'Switch to dark'"
-    >
+    <button class="taskbar__theme-btn" (click)="themeService.toggle()"
+      [title]="themeService.theme() === 'dark' ? 'Switch to light' : 'Switch to dark'">
       {{ themeService.theme() === 'dark' ? '☀' : '☾' }}
     </button>
     <span class="taskbar__time">{{ time() }}</span>

@@ -1,10 +1,6 @@
-<div class="desktop">
+<div class="desktop" (mousedown)="onDesktopMouseDown($event)">
   @for (item of items(); track item.app.id) {
-    <app-desktop-icon
-      [item]="item"
-      (opened)="openApp($event)"
-      (moved)="onIconMoved($event.id, $event.position)"
-    />
+    <app-desktop-icon [item]="item" (opened)="openApp($event)" (moved)="onIconMoved($event.id, $event.position)" />
   }
 
   @for (win of windows(); track win.id) {
@@ -20,6 +16,15 @@
         }
       </app-window>
     }
+  }
+
+  @if (selecting()) {
+    <div class="selection-box" [ngStyle]="{
+      left:   selectionBox().x + 'px',
+      top:    selectionBox().y + 'px',
+      width:  selectionBox().w + 'px',
+      height: selectionBox().h + 'px'
+    }"></div>
   }
 
   <app-taskbar />

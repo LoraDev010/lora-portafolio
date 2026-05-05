@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WindowManagerService } from '../../application/window-manager.service';
 import { IDesktopItem } from '../../domain/models/desktop-item.model';
@@ -14,12 +14,12 @@ import { ContactContentComponent } from '../contact-content/contact-content.comp
 import { ExperienceContentComponent } from '../experience-content/experience-content.component';
 
 const DESKTOP_APPS: IApp[] = [
-  { id: 'about',      label: 'About Me',   icon: 'user' },
+  { id: 'about', label: 'About Me', icon: 'user' },
   { id: 'experience', label: 'Experience', icon: 'briefcase' },
-  { id: 'skills',     label: 'Skills',     icon: 'cpu' },
-  { id: 'projects',   label: 'Projects',   icon: 'folder' },
-  { id: 'contact',    label: 'Contact',    icon: 'mail' },
-  { id: 'ai',         label: 'AI Chat',    icon: 'message-circle' },
+  { id: 'skills', label: 'Skills', icon: 'cpu' },
+  { id: 'projects', label: 'Projects', icon: 'folder' },
+  { id: 'contact', label: 'Contact', icon: 'mail' },
+  { id: 'ai', label: 'AI Chat', icon: 'message-circle' },
 ];
 
 @Component({
@@ -47,6 +47,10 @@ export class DesktopComponent {
 
   protected readonly items = signal<IDesktopItem[]>(this.buildItems());
 
+  protected readonly selecting = signal(false)
+  protected readonly selectionBox = signal({ x: 0, y: 0, w: 0, h: 0 })
+  private selStart = { x: 0, y: 0 };
+
   private buildItems(): IDesktopItem[] {
     const vw = window.innerWidth;
     const isMobile = vw < 768;
@@ -71,5 +75,28 @@ export class DesktopComponent {
     this.items.update(list =>
       list.map(item => (item.app.id === id ? { ...item, position } : item))
     );
+  }
+
+  onDesktopMouseDown(e: MouseEvent) {
+    const target = e.target as HTMLElement;
+    if (!target.classList.contains('desktop')) return;
+    this.selStart = { x: e.clientX, y: e.clientY };
+    this.selecting.set(true);
+    this.selectionBox.set({ x: e.clientX, y: e.clientY, w: 0, h: 0 });
+  }
+
+  @HostListener('document:mousemove', ['$event'])
+  onDesktopMouseMove(e: MouseEvent) {
+    if (!this.selecting()) return;
+    const x = Math.min(e.clientX, this.selStart.x);
+    const y = Math.min(e.clientY, this.selStart.y);
+    const w = Math.abs(e.clientX - this.selStart.x);
+    const h = Math.abs(e.clientY - this.selStart.y);
+    this.selectionBox.set({ x, y, w, h });
+  }
+
+  @HostListener('document:mouseup')
+  onDesktopMouseUp() {
+    this.selecting.set(false);
   }
 }
