@@ -18,6 +18,7 @@ export class PortfolioDataService {
     { name: 'Java / Spring',   level: 78, category: 'Backend' },
     { name: 'Laravel / PHP',   level: 75, category: 'Backend' },
     { name: 'WebSockets',      level: 80, category: 'Backend' },
+    { name: 'RabbitMQ',        level: 72, category: 'Backend' },
     // Databases
     { name: 'MySQL / SQL Srv', level: 88, category: 'Databases' },
     { name: 'PostgreSQL',      level: 75, category: 'Databases' },

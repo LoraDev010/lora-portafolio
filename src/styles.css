@@ -8,8 +8,474 @@ html, body {
   color: rgba(200, 230, 255, 0.85);
   font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
   -webkit-font-smoothing: antialiased;
+  transition: background 0.3s, color 0.3s;
 }
 
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(0, 240, 255, 0.2); border-radius: 2px; }
+
+/* ══════════════════════════════════════════
+   LIGHT THEME
+   Selectores con body para ganar especificidad
+   sobre los estilos encapsulados de Angular
+   ══════════════════════════════════════════ */
+
+html[data-theme="light"] body {
+  background: #dde8f8;
+  color: rgba(12, 22, 55, 0.88);
+}
+
+/* Desktop */
+html[data-theme="light"] .desktop {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 10%, rgba(100, 150, 255, 0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 80% 80%, rgba(60, 100, 220, 0.12) 0%, transparent 60%),
+    linear-gradient(160deg, #dde8f8 0%, #e6eeff 40%, #dce7f7 100%);
+}
+
+html[data-theme="light"] .desktop::before {
+  background-image:
+    linear-gradient(rgba(37, 99, 235, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.05) 1px, transparent 1px);
+}
+
+/* Window */
+html[data-theme="light"] .os-window {
+  background: rgba(248, 251, 255, 0.88);
+  border-color: rgba(37, 99, 235, 0.18);
+  box-shadow:
+    0 0 0 1px rgba(37, 99, 235, 0.08),
+    0 24px 64px rgba(0, 0, 0, 0.12),
+    0 0 40px rgba(37, 99, 235, 0.04);
+}
+
+html[data-theme="light"] .os-window.focused {
+  border-color: rgba(37, 99, 235, 0.35);
+  box-shadow:
+    0 0 0 1px rgba(37, 99, 235, 0.18),
+    0 28px 72px rgba(0, 0, 0, 0.16),
+    0 0 60px rgba(37, 99, 235, 0.08);
+}
+
+html[data-theme="light"] .os-window__titlebar {
+  background: rgba(37, 99, 235, 0.04);
+  border-bottom-color: rgba(37, 99, 235, 0.1);
+}
+
+html[data-theme="light"] .os-window__title {
+  color: rgba(20, 40, 100, 0.6);
+}
+
+html[data-theme="light"] .os-window__body {
+  color: rgba(12, 22, 55, 0.85);
+}
+
+/* Taskbar */
+html[data-theme="light"] .taskbar {
+  background: rgba(235, 242, 255, 0.92);
+  border-top-color: rgba(37, 99, 235, 0.12);
+  box-shadow: 0 -4px 32px rgba(0, 0, 60, 0.08), 0 -1px 0 rgba(37, 99, 235, 0.06);
+}
+
+html[data-theme="light"] .taskbar__brand {
+  border-right-color: rgba(37, 99, 235, 0.12);
+}
+
+html[data-theme="light"] .taskbar__logo {
+  color: #2563eb;
+  text-shadow: 0 0 12px rgba(37, 99, 235, 0.3);
+}
+
+html[data-theme="light"] .taskbar__btn {
+  border-color: rgba(37, 99, 235, 0.12);
+  background: rgba(37, 99, 235, 0.04);
+  color: rgba(25, 45, 120, 0.65);
+}
+
+html[data-theme="light"] .taskbar__btn:hover {
+  background: rgba(37, 99, 235, 0.1);
+  color: rgba(15, 35, 100, 0.9);
+  border-color: rgba(37, 99, 235, 0.28);
+}
+
+html[data-theme="light"] .taskbar__btn.active {
+  background: rgba(37, 99, 235, 0.12);
+  border-color: rgba(37, 99, 235, 0.38);
+  color: #2563eb;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.1);
+}
+
+html[data-theme="light"] .taskbar__btn-dot {
+  background: rgba(37, 99, 235, 0.5);
+}
+
+html[data-theme="light"] .taskbar__btn.active .taskbar__btn-dot {
+  background: #2563eb;
+  box-shadow: 0 0 6px rgba(37, 99, 235, 0.7);
+}
+
+html[data-theme="light"] .taskbar__sys {
+  border-left-color: rgba(37, 99, 235, 0.12);
+}
+
+html[data-theme="light"] .taskbar__time {
+  color: rgba(30, 55, 140, 0.6);
+}
+
+html[data-theme="light"] .taskbar__theme-btn {
+  border-color: rgba(37, 99, 235, 0.25);
+  background: rgba(37, 99, 235, 0.04);
+  color: rgba(37, 99, 235, 0.75);
+}
+
+html[data-theme="light"] .taskbar__theme-btn:hover {
+  background: rgba(37, 99, 235, 0.1);
+  border-color: rgba(37, 99, 235, 0.45);
+  color: #2563eb;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.15);
+}
+
+/* Desktop icons */
+html[data-theme="light"] .icon:hover {
+  background: rgba(37, 99, 235, 0.07);
+}
+
+html[data-theme="light"] .icon__glyph {
+  filter: drop-shadow(0 0 6px rgba(37, 99, 235, 0.35));
+}
+
+html[data-theme="light"] .icon__label {
+  color: rgba(15, 30, 80, 0.85);
+  text-shadow: 0 0 6px rgba(37, 99, 235, 0.15);
+}
+
+/* ── About ─── */
+html[data-theme="light"] .about__name {
+  color: rgba(10, 20, 55, 0.92);
+}
+
+html[data-theme="light"] .about__avatar {
+  background: linear-gradient(135deg, rgba(37,99,235,0.15), rgba(0,80,200,0.2));
+  border-color: rgba(37, 99, 235, 0.4);
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.15);
+  color: #2563eb;
+}
+
+html[data-theme="light"] .about__title {
+  color: #2563eb;
+}
+
+html[data-theme="light"] .about__location {
+  color: rgba(30, 60, 140, 0.5);
+}
+
+html[data-theme="light"] .about__divider {
+  background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.2), transparent);
+}
+
+html[data-theme="light"] .about__bio {
+  color: rgba(15, 30, 70, 0.7);
+}
+
+html[data-theme="light"] .about__highlight {
+  color: #1d4ed8;
+}
+
+html[data-theme="light"] .about__stat-num {
+  color: #2563eb;
+  text-shadow: 0 0 16px rgba(37, 99, 235, 0.3);
+}
+
+html[data-theme="light"] .about__stat {
+  border-right-color: rgba(37, 99, 235, 0.1);
+}
+
+html[data-theme="light"] .about__stat-label {
+  color: rgba(30, 60, 140, 0.5);
+}
+
+html[data-theme="light"] .about__linkedin {
+  border-color: rgba(37, 99, 235, 0.25);
+  background: rgba(37, 99, 235, 0.05);
+  color: #2563eb;
+}
+
+html[data-theme="light"] .about__linkedin:hover {
+  background: rgba(37, 99, 235, 0.1);
+  border-color: rgba(37, 99, 235, 0.45);
+  box-shadow: 0 0 16px rgba(37, 99, 235, 0.1);
+}
+
+/* ── Skills ─── */
+html[data-theme="light"] .skills__cat-name,
+html[data-theme="light"] .skills__cat-icon {
+  color: #2563eb;
+}
+
+html[data-theme="light"] .skills__category {
+  border-left-color: rgba(37, 99, 235, 0.15);
+}
+
+html[data-theme="light"] .skills__cat-count {
+  color: rgba(30, 60, 140, 0.35);
+}
+
+html[data-theme="light"] .skill__name {
+  color: rgba(12, 25, 65, 0.82);
+}
+
+html[data-theme="light"] .skill__pct {
+  color: rgba(12, 25, 65, 0.7);
+}
+
+html[data-theme="light"] .skill__track {
+  background: rgba(37, 99, 235, 0.08);
+}
+
+html[data-theme="light"] .skill__fill--expert {
+  background: linear-gradient(90deg, rgba(29, 78, 216, 0.7), #2563eb);
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.5);
+}
+
+html[data-theme="light"] .skill__fill--advanced {
+  background: linear-gradient(90deg, rgba(5, 150, 105, 0.7), #10b981);
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+}
+
+html[data-theme="light"] .skill__fill--mid {
+  background: linear-gradient(90deg, rgba(180, 120, 10, 0.7), #d97706);
+  box-shadow: 0 0 8px rgba(217, 119, 6, 0.3);
+}
+
+html[data-theme="light"] .skill__badge--expert {
+  color: #1d4ed8;
+  border-color: rgba(29, 78, 216, 0.35);
+  background: rgba(37, 99, 235, 0.08);
+}
+
+html[data-theme="light"] .skill__badge--advanced {
+  color: #059669;
+  border-color: rgba(5, 150, 105, 0.35);
+  background: rgba(16, 185, 129, 0.06);
+}
+
+html[data-theme="light"] .skill__badge--mid {
+  color: #d97706;
+  border-color: rgba(217, 119, 6, 0.35);
+  background: rgba(217, 119, 6, 0.06);
+}
+
+html[data-theme="light"] .skill__badge--junior {
+  color: rgba(60, 80, 140, 0.6);
+  border-color: rgba(60, 80, 140, 0.25);
+}
+
+/* ── Experience ─── */
+html[data-theme="light"] .exp__total {
+  color: rgba(37, 99, 235, 0.55);
+}
+
+html[data-theme="light"] .exp__badge {
+  color: #2563eb;
+  border-color: rgba(37, 99, 235, 0.3);
+  background: rgba(37, 99, 235, 0.06);
+}
+
+html[data-theme="light"] .exp__timeline::before {
+  background: linear-gradient(180deg, rgba(37,99,235,0.5) 0%, rgba(37,99,235,0.2) 50%, rgba(37,99,235,0.05) 100%);
+}
+
+html[data-theme="light"] .exp__dot {
+  background: rgba(37, 99, 235, 0.25);
+  border-color: rgba(37, 99, 235, 0.4);
+}
+
+html[data-theme="light"] .exp__dot--lead {
+  background: #2563eb;
+  border-color: #1d4ed8;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+}
+
+html[data-theme="light"] .exp__card {
+  background: rgba(37, 99, 235, 0.03);
+  border-color: rgba(37, 99, 235, 0.12);
+}
+
+html[data-theme="light"] .exp__card:hover {
+  background: rgba(37, 99, 235, 0.06);
+  border-color: rgba(37, 99, 235, 0.22);
+}
+
+html[data-theme="light"] .exp__entry--first .exp__card {
+  background: rgba(37, 99, 235, 0.05);
+  border-color: rgba(37, 99, 235, 0.2);
+}
+
+html[data-theme="light"] .exp__role {
+  color: rgba(10, 20, 55, 0.92);
+}
+
+html[data-theme="light"] .exp__company {
+  color: #2563eb;
+}
+
+html[data-theme="light"] .exp__period {
+  color: rgba(30, 60, 140, 0.5);
+}
+
+html[data-theme="light"] .exp__type {
+  color: #059669;
+  border-color: rgba(5, 150, 105, 0.25);
+  background: rgba(16, 185, 129, 0.05);
+}
+
+html[data-theme="light"] .exp__item {
+  color: rgba(15, 30, 70, 0.68);
+}
+
+html[data-theme="light"] .exp__bullet {
+  color: rgba(37, 99, 235, 0.5);
+}
+
+/* ── Projects ─── */
+html[data-theme="light"] .project-card {
+  background: rgba(37, 99, 235, 0.03);
+  border-color: rgba(37, 99, 235, 0.12);
+}
+
+html[data-theme="light"] .project-card:hover {
+  background: rgba(37, 99, 235, 0.06);
+  border-color: rgba(37, 99, 235, 0.22);
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.06);
+}
+
+html[data-theme="light"] .project-card__dot {
+  background: #2563eb;
+  box-shadow: 0 0 6px rgba(37, 99, 235, 0.6);
+}
+
+html[data-theme="light"] .project-card__name {
+  color: rgba(10, 20, 55, 0.9);
+}
+
+html[data-theme="light"] .project-card__period {
+  color: rgba(37, 99, 235, 0.55);
+}
+
+html[data-theme="light"] .project-card__desc {
+  color: rgba(15, 30, 70, 0.65);
+}
+
+html[data-theme="light"] .tech-tag {
+  color: #1d4ed8;
+  border-color: rgba(29, 78, 216, 0.25);
+  background: rgba(37, 99, 235, 0.07);
+  box-shadow: none;
+}
+
+html[data-theme="light"] body .project-card__highlights li {
+  color: rgba(15, 30, 70, 0.65) !important;
+}
+
+html[data-theme="light"] body .project-card__highlights li::before {
+  color: rgba(37, 99, 235, 0.5) !important;
+}
+
+/* ── Contact ─── */
+html[data-theme="light"] .contact__intro {
+  color: rgba(30, 60, 140, 0.6);
+}
+
+html[data-theme="light"] .contact__item {
+  border-color: rgba(37, 99, 235, 0.12);
+  background: rgba(37, 99, 235, 0.03);
+}
+
+html[data-theme="light"] .contact__item:hover {
+  background: rgba(37, 99, 235, 0.07);
+  border-color: rgba(37, 99, 235, 0.28);
+  box-shadow: 0 0 16px rgba(37, 99, 235, 0.06);
+}
+
+html[data-theme="light"] .contact__icon {
+  background: rgba(37, 99, 235, 0.07);
+  border-color: rgba(37, 99, 235, 0.18);
+}
+
+html[data-theme="light"] .contact__icon--li {
+  color: #fff;
+  background: #2563eb;
+  border-color: #1d4ed8;
+}
+
+html[data-theme="light"] .contact__label {
+  color: rgba(37, 99, 235, 0.55);
+}
+
+html[data-theme="light"] .contact__value {
+  color: rgba(12, 22, 55, 0.85);
+}
+
+html[data-theme="light"] .contact__arrow {
+  color: rgba(37, 99, 235, 0.4);
+}
+
+html[data-theme="light"] .contact__status {
+  color: rgba(30, 60, 140, 0.45);
+}
+
+html[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: rgba(37, 99, 235, 0.2);
+}
+
+/* ── AI Chat ─── */
+html[data-theme="light"] .ai__header {
+  border-bottom-color: rgba(37, 99, 235, 0.12);
+}
+
+html[data-theme="light"] .ai__name {
+  color: #2563eb;
+}
+
+html[data-theme="light"] .ai__status {
+  color: rgba(37, 99, 235, 0.6);
+  border-color: rgba(37, 99, 235, 0.25);
+}
+
+html[data-theme="light"] .ai__msg {
+  color: rgba(12, 22, 55, 0.82);
+}
+
+html[data-theme="light"] .ai__msg--system {
+  color: rgba(37, 99, 235, 0.5);
+}
+
+html[data-theme="light"] .ai__input-row {
+  border-top-color: rgba(37, 99, 235, 0.12);
+}
+
+html[data-theme="light"] .ai__input {
+  background: rgba(37, 99, 235, 0.04);
+  border-color: rgba(37, 99, 235, 0.18);
+  color: rgba(12, 22, 55, 0.88);
+}
+
+html[data-theme="light"] .ai__input:focus {
+  border-color: rgba(37, 99, 235, 0.45);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.08);
+}
+
+html[data-theme="light"] .ai__input::placeholder {
+  color: rgba(37, 99, 235, 0.35);
+}
+
+html[data-theme="light"] .ai__send {
+  background: rgba(37, 99, 235, 0.08);
+  border-color: rgba(37, 99, 235, 0.2);
+  color: #2563eb;
+}
+
+html[data-theme="light"] .ai__send:hover {
+  background: rgba(37, 99, 235, 0.16);
+}

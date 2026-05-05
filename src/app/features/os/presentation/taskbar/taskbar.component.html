@@ -18,6 +18,13 @@
   </div>
 
   <div class="taskbar__sys">
+    <button
+      class="taskbar__theme-btn"
+      (click)="themeService.toggle()"
+      [title]="themeService.theme() === 'dark' ? 'Switch to light' : 'Switch to dark'"
+    >
+      {{ themeService.theme() === 'dark' ? '☀' : '☾' }}
+    </button>
     <span class="taskbar__time">{{ time() }}</span>
   </div>
 </nav>

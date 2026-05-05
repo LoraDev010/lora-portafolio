@@ -1,6 +1,7 @@
 import { Component, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WindowManagerService } from '../../application/window-manager.service';
+import { ThemeService } from '../../../../core/services/theme.service';
 
 @Component({
   selector: 'app-taskbar',
@@ -11,6 +12,7 @@ import { WindowManagerService } from '../../application/window-manager.service';
 })
 export class TaskbarComponent {
   private readonly wm = inject(WindowManagerService);
+  protected readonly themeService = inject(ThemeService);
 
   protected readonly windows = this.wm.windows;
   protected readonly time = computed(() => new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }));
