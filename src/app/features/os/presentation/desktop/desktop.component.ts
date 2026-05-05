@@ -14,12 +14,12 @@ import { ContactContentComponent } from '../contact-content/contact-content.comp
 import { ExperienceContentComponent } from '../experience-content/experience-content.component';
 
 const DESKTOP_APPS: IApp[] = [
-  { id: 'about',      label: 'About Me',   icon: '◉' },
-  { id: 'experience', label: 'Experience', icon: '◎' },
-  { id: 'skills',     label: 'Skills',     icon: '⬡' },
-  { id: 'projects',   label: 'Projects',   icon: '⬟' },
-  { id: 'contact',    label: 'Contact',    icon: '◈' },
-  { id: 'ai',         label: 'AI Chat',    icon: '△' },
+  { id: 'about',      label: 'About Me',   icon: 'user' },
+  { id: 'experience', label: 'Experience', icon: 'briefcase' },
+  { id: 'skills',     label: 'Skills',     icon: 'cpu' },
+  { id: 'projects',   label: 'Projects',   icon: 'folder' },
+  { id: 'contact',    label: 'Contact',    icon: 'mail' },
+  { id: 'ai',         label: 'AI Chat',    icon: 'message-circle' },
 ];
 
 @Component({
@@ -48,12 +48,18 @@ export class DesktopComponent {
   protected readonly items = signal<IDesktopItem[]>(this.buildItems());
 
   private buildItems(): IDesktopItem[] {
-    const isMobile = window.innerWidth < 768;
+    const vw = window.innerWidth;
+    const isMobile = vw < 768;
+    const cols = 3;
+    const colStep = 90;
+    const iconW = 70;
+    const gridW = (cols - 1) * colStep + iconW;
+    const startX = isMobile ? Math.max(8, Math.round((vw - gridW) / 2)) : 24;
     return DESKTOP_APPS.map((app, i) => ({
       app,
       position: isMobile
-        ? { x: 16 + (i % 3) * 90, y: 16 + Math.floor(i / 3) * 100 }
-        : { x: 24, y: 24 + i * 100 },
+        ? { x: startX + (i % cols) * colStep, y: 24 + Math.floor(i / cols) * 100 }
+        : { x: startX, y: 24 + i * 100 },
     }));
   }
 

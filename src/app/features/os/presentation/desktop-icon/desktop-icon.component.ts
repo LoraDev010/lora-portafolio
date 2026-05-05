@@ -1,18 +1,24 @@
 import { Component, input, output, HostListener, signal, OnInit } from '@angular/core';
+import { LucideAngularModule } from 'lucide-angular';
 import { IDesktopItem } from '../../domain/models/desktop-item.model';
 import { IApp } from '../../domain/models/app.model';
 
 @Component({
   selector: 'app-desktop-icon',
   standalone: true,
-  imports: [],
+  imports: [LucideAngularModule],
   template: `
     <button
       class="icon"
       (mousedown)="onPointerDown($event)"
       (touchstart)="onTouchDown($event)"
     >
-      <span class="icon__glyph">{{ item().app.icon }}</span>
+      <lucide-angular
+        class="icon__glyph"
+        [name]="item().app.icon"
+        [size]="34"
+        [strokeWidth]="1.5"
+      ></lucide-angular>
       <span class="icon__label">{{ item().app.label }}</span>
     </button>
   `,
